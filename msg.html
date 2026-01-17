@@ -1,0 +1,193 @@
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card */
+.card {
+    width: 440px;
+    height: 460px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 25px;
+    position: relative;
+}
+
+h1 {
+    color: #e6005c;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* Image box */
+#imgBox {
+    width: 180px;
+    height: 180px;
+    margin: 10px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    display: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+#imgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Message */
+#msg {
+    font-size: 22px;
+    color: #ff0066;
+    min-height: 26px;
+    margin-top: 6px;
+    font-family: cursive;
+}
+
+/* Buttons area (SAFE ZONE) */
+.buttons {
+    position: relative;
+    height: 120px;
+    margin-top: 10px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+#yes {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    position: absolute;
+    left: 60px;
+    top: 10px;
+    z-index: 10;
+}
+
+#no {
+    background: linear-gradient(135deg, #bbb, #999);
+    color: white;
+    position: absolute;
+    left: 220px;
+    top: 10px;
+    z-index: 10;
+}
+
+/* Thank you */
+#thanks {
+    display: none;
+    font-size: 28px;
+    color: #ff0066;
+    margin-top: 20px;
+    animation: pop 0.6s ease forwards;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Will you be my Valentine? 💕</h1>
+    <p>You make my world brighter ✨</p>
+
+    <div id="imgBox">
+        <img id="img" loading="eager">
+    </div>
+
+    <div id="msg"></div>
+
+    <div class="buttons" id="btnArea">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 😢</button>
+    </div>
+
+    <div id="thanks">Yay! I love you tooooo💘🥰</div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const btnArea = document.getElementById("btnArea");
+const msg = document.getElementById("msg");
+const imgBox = document.getElementById("imgBox");
+const img = document.getElementById("img");
+const thanks = document.getElementById("thanks");
+
+/* LOCAL IMAGES (FASTEST) */
+const data = [
+    { text: "Pleaseee!!! 🥺", img: "images/think.jpg" },
+    { text: "Don’t break my heart 💔", img: "images/break.jpg" },
+    { text: "Think again 😢", img: "images/again.jpg" },
+    { text: "I promise you chocolates 🍫", img: "images/images.jpg" },
+    { text: "Just say yes 😍", img: "images/last.jpg" }
+];
+
+let i = 0;
+
+noBtn.addEventListener("mouseenter", () => {
+    const maxX = btnArea.clientWidth - noBtn.offsetWidth;
+    const maxY = btnArea.clientHeight - noBtn.offsetHeight;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+
+    msg.innerText = data[i].text;
+    img.src = data[i].img;
+    imgBox.style.display = "block";
+
+    i = (i + 1) % data.length;
+});
+
+document.getElementById("yes").addEventListener("click", () => {
+    thanks.style.display = "block";
+    imgBox.style.display = "none";
+    msg.innerText = "";
+    noBtn.style.display = "none";
+});
+</script>
+
+</body>
+</html>
